@@ -1,0 +1,30 @@
+# Conductor — the all-AI git platform
+# Built for the Cloudflare "next Git platform" competition.
+
+name = "conductor"
+main = "src/index.ts"
+compatibility_date = "2026-10-01"
+
+# Serve the control panel UI
+[assets]
+directory = "./public"
+
+# KV for task metadata (create with: wrangler kv namespace create TASKS)
+# [[kv_namespaces]]
+# binding = "TASKS"
+# id = "<your-kv-namespace-id>"
+
+# Artifacts binding — the versioned filesystem that speaks Git.
+# Uncomment when deploying to an account with Artifacts in open beta:
+# [[artifacts]]
+# binding = "ARTIFACTS"
+
+# Consume Artifacts push events to trigger automated reviews.
+# [[queues.consumers]]
+# queue = "artifacts-events"
+# ... (see README for the event-subscription setup)
+
+[vars]
+# URL of a CuNi emit service for the Worker's /api/cuni/emit endpoint.
+# Local demo/dev uses scripts/cuni-local.mjs against the cuni binary instead.
+CUNI_SERVICE_URL = "https://cuni-studio.fly.dev"

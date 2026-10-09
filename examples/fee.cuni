@@ -1,0 +1,17 @@
+# fee.cuni — a 0.5% order fee, exact on every seat.
+#
+# Written once in CuNi. The demo emits this to Python and JavaScript,
+# runs both with their real toolchains, and compares stdout byte-for-byte.
+# CuNi's law: byte-identical everywhere, or it refuses to emit at all.
+#
+# `dec` is exact fixed-point decimal (scale 10^4, truncation toward zero):
+# no binary floating point, no silent rounding — the same stdout on
+# every seat, or no seat at all.
+
+def fee(amount: dec) -> dec do
+    ret amount * 0.0050dec
+end
+
+say(fee(100.00dec))
+say(fee(9.99dec))
+say(fee(2500.00dec))

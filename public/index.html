@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conductor — the all-AI git platform</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header>
+  <div class="brand">
+    <span class="logo">◈</span>
+    <div>
+      <h1>Conductor</h1>
+      <p class="tag">You speak. Agents do the git.</p>
+    </div>
+  </div>
+  <nav>
+    <button class="tab active" data-tab="panel">Control panel</button>
+    <button class="tab" data-tab="cuni">CuNi exactness</button>
+  </nav>
+</header>
+
+<main id="tab-panel">
+  <section class="intent-bar">
+    <textarea id="intent" rows="2" placeholder="Tell the codebase what to do — e.g. “add a 0.5% fee to every order and prove it in Python and JavaScript”"></textarea>
+    <div class="intent-actions">
+      <select id="repo"><option value="demo-shop">demo-shop</option></select>
+      <button id="dispatch">Dispatch agents →</button>
+      <button id="voice" class="stretch" title="STRETCH: voice input via WebRTC + speech-to-text. The hook point is documented in README.">🎙 Voice <em>stretch</em></button>
+    </div>
+  </section>
+
+  <div class="grid">
+    <section class="col">
+      <h2>Agents at work</h2>
+      <div id="tasks" class="feed"><p class="muted">No tasks yet. Dispatch an intent above.</p></div>
+    </section>
+    <section class="col detail">
+      <h2>Task detail</h2>
+      <div id="task-detail"><p class="muted">Select a task to inspect its branch, diff, and review.</p></div>
+    </section>
+  </div>
+</main>
+
+<main id="tab-cuni" hidden>
+  <section class="cuni-hero">
+    <h2>CuNi exactness — one intent, every language, byte-identical or refused</h2>
+    <p>CuNi turns one program into any programming language. The law is simple:
+    the emitted programs print <strong>byte-identical</strong> output everywhere — or CuNi refuses to emit at all.
+    Below is a <strong>real</strong> example: generated with the cuni 0.9.0 binary, emitted to Python and
+    JavaScript, both executed, stdout compared byte-for-byte.</p>
+  </section>
+  <section class="cuni-grid">
+    <div>
+      <h3>CuNi source</h3>
+      <pre id="cuni-source" class="code"></pre>
+    </div>
+    <div>
+      <h3>Verdict</h3>
+      <pre id="cuni-verdict" class="code"></pre>
+    </div>
+    <div>
+      <h3>Emitted Python</h3>
+      <pre id="cuni-py" class="code"></pre>
+    </div>
+    <div>
+      <h3>Emitted JavaScript</h3>
+      <pre id="cuni-js" class="code"></pre>
+    </div>
+  </section>
+  <p class="muted small">Try it live: <code>POST /api/cuni/emit</code> with <code>{"source": "...", "seats": ["py","js"]}</code>.
+  In production this calls a CuNi emit service; the demo panel shows output generated locally by the real compiler.</p>
+</main>
+
+<footer>
+  <span>Conductor 0.1.0 — Apache-2.0 — built for the Cloudflare “next Git platform” competition.</span>
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>
